@@ -19,7 +19,7 @@ if(isset($_POST['e-mail']) || isset($_POST['senha'])) {
 
         $usuario = $sql_query->fetch_assoc();
 
-        if(!isset($_SESSION)) {
+        if(isset($_SESSION)) {
             session_start();
         }
 
