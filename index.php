@@ -28,7 +28,7 @@ if(isset($_POST['email']) || isset($_POST['senha'])) {
     header("Location: painel.php");
         
     } else {
-        echo "FALHA AO LOGAR ! E-MAIL OU SENHA INCORRETOS"
+        echo "FALHA AO LOGAR ! E-MAIL OU SENHA INCORRETOS";
     }
 }
 }
