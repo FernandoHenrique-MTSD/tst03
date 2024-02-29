@@ -31,6 +31,7 @@ if(isset($_POST['email']) || isset($_POST['senha'])) {
         echo "FALHA AO LOGAR ! E-MAIL OU SENHA INCORRETOS"
     }
 }
+}
 
 <!DOCTYPE html>
 <html lang="en">
