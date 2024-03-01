@@ -1,4 +1,4 @@
-/*<?php
+<?php
 include('conexao.php');
 
 if(isset($_POST['email']) || isset($_POST['senha'])) {
@@ -37,7 +37,7 @@ if(isset($_POST['email']) || isset($_POST['senha'])) {
     }
 
 }
-?>*/
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
