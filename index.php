@@ -2,10 +2,11 @@
 include('conexao.php');
 
 if(isset($_POST['email']) || isset($_POST['senha'])) {
+
     if(strlen($_POST['email']) == 0) {
-        echo "PREENCHA SEU E-MAIL";
+        echo "Preencha seu e-mail";
     } else if(strlen($_POST['senha']) == 0) {
-        echo "PREENCHA SUA SENHA";
+        echo "Preencha sua senha";
     } else {
 
         $email = $mysqli->real_escape_string($_POST['email']);
@@ -30,7 +31,7 @@ if(isset($_POST['email']) || isset($_POST['senha'])) {
             header("Location: painel.php");
 
         } else {
-            echo "FALHA AO LOGAR! E-MAIL OU SENHA INCORRETOS";
+            echo "Falha ao logar! E-mail ou senha incorretos";
         }
 
     }
@@ -46,18 +47,18 @@ if(isset($_POST['email']) || isset($_POST['senha'])) {
     <title>Login</title>
 </head>
 <body>
-    <h1>ACESSE SUA CONTA</h1>
+    <h1>Acesse sua conta</h1>
     <form action="" method="POST">
         <p>
-            <label>E-MAIL</label>
+            <label>E-mail</label>
             <input type="text" name="email">
         </p>
         <p>
-            <label>SENHA</label>
+            <label>Senha</label>
             <input type="password" name="senha">
         </p>
         <p>
-            <button type="submit">ENTRAR</button>
+            <button type="submit">Entrar</button>
         </p>
     </form>
 </body>
