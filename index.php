@@ -2,58 +2,63 @@
 include('conexao.php');
 
 if(isset($_POST['email']) || isset($_POST['senha'])) {
-    if(strlen)($_POST['email']) == 0 {
+    if(strlen($_POST['email']) == 0) {
         echo "PREENCHA SEU E-MAIL";
-        } else if (strlen($_POST['senha']) == 0) {
-    echo "PREENCHA SUA SENHA";
-} else {
-    $email = $mysqli->real_escape_string($_POST['email']);
-    $senha = $mysqli->real_escape_string($_POST['senha']);
+    } else if(strlen($_POST['senha']) == 0) {
+        echo "PREENCHA SUA SENHA";
+    } else {
 
-    $sql_code = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'";
-    $sql_query = $mysql->query($sql_code) or die("FALHA NA EXECUCAO SQL" . $mysqli->error);
+        $email = $mysqli->real_escape_string($_POST['email']);
+        $senha = $mysqli->real_escape_string($_POST['senha']);
 
-    $quantidade = $sql_query->num_rows;
+        $sql_code = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'";
+        $sql_query = $mysqli->query($sql_code) or die("Falha na execução do código SQL: " . $mysqli->error);
 
-    if($quantidade == 1) {
+        $quantidade = $sql_query->num_rows;
 
-        $usuario = $sql_query->fetch_assoc();
+        if($quantidade == 1) {
+            
+            $usuario = $sql_query->fetch_assoc();
 
-        if(isset($_SESSION)) {
-            session_start();
+            if(!isset($_SESSION)) {
+                session_start();
+            }
+
+            $_SESSION['id'] = $usuario['id'];
+            $_SESSION['nome'] = $usuario['nome'];
+
+            header("Location: painel.php");
+
+        } else {
+            echo "FALHA AO LOGAR! E-MAIL OU SENHA INCORRETOS";
         }
 
-    $_SESSION['id'] = $usuario['id'];
-
-    header("Location: painel.php");
-        
-    } else {
-        echo "FALHA AO LOGAR ! E-MAIL OU SENHA INCORRETOS";
     }
-}
+
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DLogin</title>
+    <title>Login</title>
 </head>
 <body>
     <h1>ACESSE SUA CONTA</h1>
     <form action="" method="POST">
-        <label> E-MAIL <label>
         <p>
-        <input type="text" name="email">
-        </p>
-        <label> SENHA <label>
-        <p>
-        <input type="password" name="senha">
+            <label>E-MAIL</label>
+            <input type="text" name="email">
         </p>
         <p>
-        <button type="submit">LOGIN</button>
+            <label>SENHA</label>
+            <input type="password" name="senha">
         </p>
-</form>
+        <p>
+            <button type="submit">ENTRAR</button>
+        </p>
+    </form>
 </body>
 </html>
